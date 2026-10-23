@@ -1,0 +1,28 @@
+﻿name: release
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: detect-obstacle ${{ github.ref_name }}
+          body: |
+            Split dataset and obstacle_detector archives (~7.5 GB total).
+
+            See HOW_TO_EXTRACT.md for how to reassemble and extract.
+
+            **Assets** (upload separately if not present yet):
+            - dataset_part01.zip … dataset_part08.zip
+            - obstacle_detector.zip.001 … .008
+            - HOW_TO_EXTRACT.md
+          files: HOW_TO_EXTRACT.md
+          fail_on_unmatched_files: false
+          make_latest: true
