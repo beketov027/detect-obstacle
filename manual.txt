@@ -1,0 +1,2 @@
+whls/pydetect_linux.whl, models/obstacle_yolo26n_7cls.pt
+whls/pydetect_amd64.whl, models/obstacle_yolo26n_7cls.onnx
